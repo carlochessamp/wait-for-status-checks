@@ -10,6 +10,8 @@ inputs:
     required: true
   interval:
     description: 'Interval or period in seconds to poll GitHub Check Runs'
+  ref:
+    description: 'Git reference (branch or tag) to poll GitHub Check Runs'
   timeout:
     description: 'Timeout in seconds to poll GitHub Check Runs'
   delay:

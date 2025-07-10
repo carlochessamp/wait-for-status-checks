@@ -11,6 +11,7 @@ async function run(): Promise<void> {
 
     // github context
     const context = github.context
+    const ref = (core.getInput('ref') || pickSHA(context))
 
     // ignore self/current job check run
     const ignore = (core.getInput('ignore') || '')
@@ -28,7 +29,7 @@ async function run(): Promise<void> {
       client: github.getOctokit(token),
       owner: context.repo.owner,
       repo: context.repo.repo,
-      ref: pickSHA(context),
+      ref: ref,
       ignoreChecks: ignore,
 
       matchPattern,

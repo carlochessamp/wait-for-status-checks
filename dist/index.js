@@ -60,6 +60,7 @@ function run() {
             const token = core.getInput('token', { required: true });
             // github context
             const context = github.context;
+            const ref = (core.getInput('ref') || pickSHA(context));
             // ignore self/current job check run
             const ignore = (core.getInput('ignore') || '')
                 .split(',')
@@ -73,7 +74,7 @@ function run() {
                 client: github.getOctokit(token),
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                ref: pickSHA(context),
+                ref: ref,
                 ignoreChecks: ignore,
                 matchPattern,
                 ignorePattern,
